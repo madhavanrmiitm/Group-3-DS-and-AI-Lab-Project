@@ -34,6 +34,20 @@
 - [x] Vector database options explored; ChromaDB selected for development
 - [x] Preprocessing pipeline documented for full reproducibility
 
-### Milestone 3 (In Progress)
-- [ ] Milestone 3 directory created
+### Milestone 3 (Completed)
+- [x] Milestone 3 directory created
+- [x] Detailed milestone requirements documented
+- [x] Dataset organization and project directory structure defined
+- [x] Preprocessing and Tokenization logic implemented (T5-Tokenizer, 128 MAX_LEN)
+- [x] Model architecture selected and justified (T5 Encoder-Decoder)
+- [x] Data flow diagram from raw input to HiveQL output mapped
+- [x] Expected input formats and tensor shapes verified ([Batch_Size, 128])
+- [x] Small-scale end-to-end pipeline implemented using a 10-sample subset
+- [x] Model inference verified and initial similarity metrics calculated (~0.78)
+- [x] Milestone 3 Report and Contributions document finalized
+- [x] Presentation slides for Milestone 3 prepared
+- [x] Subtasks and deliverables submitted
+
+### Milestone 4 (In Progress)
+- [ ] Milestone 4 directory created
 - [ ] Subtasks and deliverables submitted
