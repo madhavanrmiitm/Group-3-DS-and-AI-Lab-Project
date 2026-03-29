@@ -48,6 +48,39 @@
 - [x] Presentation slides for Milestone 3 prepared
 - [x] Subtasks and deliverables submitted
 
-### Milestone 4 (In Progress)
-- [ ] Milestone 4 directory created
-- [ ] Subtasks and deliverables submitted
+### Milestone 4 (Completed)
+- [x] Milestone 4 directory created
+- [x] RAG pipeline implemented (Knowledge Base, Embeddings, Retrieval)
+- [x] Knowledge base constructed using SQLite docs, HiveQL docs, and schema data
+- [x] Text chunking and preprocessing pipeline implemented for RAG corpus
+- [x] Embeddings generated using sentence-transformers (all-MiniLM-L6-v2)
+- [x] FAISS vector store created for efficient similarity search
+- [x] Retriever implemented with top-k semantic search
+- [x] Cross-encoder reranker integrated (ms-marco-MiniLM-L-6-v2)
+- [x] RAG-augmented dataset constructed with context injection
+- [x] Baseline (No-RAG) and RAG datasets prepared for comparison
+- [x] Experiment 1: Baseline model (T5 + LoRA) executed
+- [x] Experiment 2: Learning rate tuning conducted
+- [x] Experiment 3: Scheduler variants tested (Linear, Cosine, Constant)
+- [x] Experiment 4: Beam search optimization performed
+- [x] Experiment 5: Optimizer comparison (AdamW vs Adafactor)
+- [x] Experiment 6: Regularization techniques applied (dropout, weight decay, label smoothing)
+- [x] Experiment 7: RAG integration into training pipeline
+- [x] Experiment 8: RAG ablation study (retriever vs reranker)
+- [x] Experiment 9: Final optimized configuration executed
+- [x] Validation performance evaluated using exact match metric
+- [x] Experiment results logged and saved (milestone4_experiment_log.csv)
+- [x] Key observations and insights documented
+- [x] Milestone 4 Report finalized
+- [x] Contributions document prepared
+- [x] Presentation slides created for Milestone 4
+- [x] Subtasks and deliverables submitted
+
+### Milestone 5 (In Progress)
+- [ ] Milestone 5 directory created
+- [ ] Advanced model improvements and fine-tuning enhancements planned
+- [ ] Evaluation metrics expansion (CodeBLEU, execution accuracy) planned
+- [ ] Integration with real-time query testing environment planned
+- [ ] UI/Dashboard for SQL refactoring assistant under development
+- [ ] Deployment strategy exploration (API / interactive tool)
+- [ ] Subtasks and deliverables in progress
