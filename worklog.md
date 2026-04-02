@@ -76,11 +76,43 @@
 - [x] Presentation slides created for Milestone 4
 - [x] Subtasks and deliverables submitted
 
-### Milestone 5 (In Progress)
-- [ ] Milestone 5 directory created
-- [ ] Advanced model improvements and fine-tuning enhancements planned
-- [ ] Evaluation metrics expansion (CodeBLEU, execution accuracy) planned
-- [ ] Integration with real-time query testing environment planned
-- [ ] UI/Dashboard for SQL refactoring assistant under development
-- [ ] Deployment strategy exploration (API / interactive tool)
+### Milestone 5 (Completed)
+- [x] Milestone 5 directory created
+- [x] Best-performing model from Milestone 4 loaded (T5 + LoRA)
+- [x] Evaluation pipelines implemented for multiple variants (Baseline, RAG, FSP, CoT, Full)
+- [x] Batched inference pipeline implemented for scalable prediction generation
+- [x] Beam search decoding applied (num_beams = 4)
+- [x] Predictions generated across all pipeline variants
+- [x] Full evaluation metric suite implemented: Exact Match (EM%), BLEU Score, Parse Validity (PV%), Token-Level F1 (TF1%), ROUGE-L (RL%)
+- [x] Training logs analyzed for convergence and stability insights
+- [x] Hyperparameter impact studied (weight decay, dropout)
+- [x] Exact Match vs BLEU behavior analyzed
+- [x] Parse validity issues identified and documented
+- [x] Regularization effects (dropout) evaluated
+- [x] Overfitting patterns analyzed using training vs validation loss
+- [x] Pipeline comparison conducted (Baseline → RAG → FSP → CoT → Full)
+- [x] Few-Shot Prompting (FSP) analysis performed: Token budget breakdown, Example relevance analysis, Complexity-wise contribution
+- [x] Chain-of-Thought (CoT) analysis performed: Reasoning validation, Accuracy comparison, Impact assessment
+- [x] Retrieval quality evaluation implemented using heuristic scoring
+- [x] Per-complexity performance analysis conducted (Simple, Medium, Complex)
+- [x] Comparative visualizations generated (pipeline vs metrics)
+- [x] Key insights and observations documented
+- [x] Final conclusions derived from evaluation results
+- [x] Milestone 5 report finalized
+- [x] Contributions document prepared
+- [x] Presentation slides created for Milestone 5
+- [x] Subtasks and deliverables submitted
+
+### Milestone 6 (In Progress)
+- [ ] Milestone 6 directory created
+- [ ] System integration planning (end-to-end pipeline)
+- [ ] Backend API design for SQL refactoring assistant
+- [ ] Integration of model with inference pipeline
+- [ ] Real-time query input and response handling
+- [ ] UI/Dashboard design for user interaction
+- [ ] Integration of RAG pipeline into production workflow
+- [ ] Optimization of inference latency and performance
+- [ ] Implementation of execution-based evaluation (optional)
+- [ ] Testing and validation of complete system
+- [ ] Documentation for deployment and usage
 - [ ] Subtasks and deliverables in progress
