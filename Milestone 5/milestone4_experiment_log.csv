@@ -1,0 +1,7 @@
+name,description,pipeline,use_lora,lora_r,learning_rate,batch_size,weight_decay,lr_scheduler,optimizer,num_beams,label_smoothing,dropout,trainable_params,val_exact_match,val_bleu,val_parse_valid,train_time_min
+BestConfig,Best hyperparams + full RAG+FSP+CoT pipeline,full,False,0,0.0003,4,0.1,cosine,adamw_torch,4,0.1,0.2,222886656,0.0,0.0,0.0,52.2
+LoRA-Baseline,"LoRA r=16, no RAG/FSP/CoT — memory-efficient baseline",baseline,True,16,0.0003,4,0.01,cosine,adamw_torch,4,0.0,0.1,1769472,87.95,99.04,0.0,194.3
+LoRA-RAG,LoRA r=16 + RAG context (top-2 reranked),rag,True,16,0.0003,4,0.01,cosine,adamw_torch,4,0.0,0.1,1769472,80.69,98.43,0.0,136.0
+LoRA-Full,LoRA r=16 + RAG + FSP (1-shot) + CoT — recommended for T4,full,True,16,0.0003,4,0.01,cosine,adamw_torch,4,0.0,0.1,1769472,41.85,91.08,0.0,115.2
+BestConfig,Best hyperparams + full RAG+FSP+CoT pipeline,full,False,0,0.0003,4,0.1,cosine,adamw_torch,4,0.05,0.2,222886656,59.09,79.56,12.88,109.0
+LoRA-BestConfig,LoRA r=16 + best hyperparams + full RAG+FSP+CoT pipeline,full,True,16,0.0003,4,0.1,cosine,adamw_torch,4,0.05,0.2,1769472,68.43,97.24,0.21,159.3
