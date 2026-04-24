@@ -2,43 +2,143 @@
 
 ## Project Overview
 
-This project develops a **GenAI-powered SQL Refactoring Assistant** that automates the translation of SQL queries from SQLite to Apache Hive (HiveQL). The system leverages state-of-the-art techniques including Retrieval-Augmented Generation (RAG), few-shot prompting, and chain-of-thought reasoning to ensure syntactically correct and functionally equivalent SQL translations.
+This project develops a **GenAI-powered SQL Refactoring Assistant** that automates the translation of SQL queries from SQLite to Apache Hive (HiveQL).
+
+The system combines **neural machine translation (T5)** with **Retrieval-Augmented Generation (RAG)** to produce syntactically correct and semantically consistent HiveQL queries. The final solution is deployed as an interactive web application and API for real-time usage.
+
+---
 
 ## Project Objectives
 
-1. **Accept SQLite Queries**: Process valid SQL queries written in SQLite dialect
-2. **Generate Equivalent HiveQL**: Produce functionally equivalent SQL queries in HiveQL that generate identical result sets
-3. **Ensure Strict Syntax Compliance**: Utilize RAG to guarantee adherence to Hive SQL syntax specifications
-4. **Scalability**: Design a one-to-many migration architecture that can be extended to other database pairs (e.g., MySQL → SparkSQL)
+1. **Accept SQLite Queries**: Process SQL queries written in SQLite dialect  
+2. **Generate Equivalent HiveQL**: Produce functionally consistent HiveQL queries  
+3. **Ensure Syntax Correctness**: Validate outputs using SQL parsing (sqlglot)  
+4. **Real-Time Usability**: Provide an interactive UI and API for query translation  
+5. **Extensibility**: Enable adaptation to other SQL dialect pairs  
+
+---
 
 ## Key Problem Areas Addressed
 
-- **Type System Migration**: Translating from SQLite's dynamic typing to Hive's static typing
-- **Date/Time Function Conversion**: Rewriting SQLite's `strftime` functions to Hive's `from_unixtime` equivalents
-- **Quote Handling**: Correcting quote differences between systems (single vs. double ticks)
-- **Distributed Execution Model**: Adapting queries for Hive's distributed execution environment
+- **Dialect Differences**: Handling syntax and function variations between SQLite and HiveQL  
+- **Function Mapping**: Translating SQLite-specific functions to Hive equivalents  
+- **Query Structure Variations**: Managing joins, subqueries, and aggregations  
+- **Syntax Validation**: Ensuring generated queries are executable  
+
+---
+
+## System Architecture
+
+The system follows a **Retrieval-Augmented Translation Pipeline**:
+```
+SQLite Query
+↓
+CodeBERT Embedding
+↓
+FAISS Retrieval (Top-k Similar Examples)
+↓
+Few-shot Prompt Construction
+↓
+T5 Model (Fine-tuned)
+↓
+HiveQL Output
+```
+
+
+---
 
 ## Technical Approach
 
-### Methodology
-- **Mix of RAG and Prompting**: Combines Retrieval-Augmented Generation, few-shot examples, and chain-of-thought reasoning
-- **LLM Support**: Evaluates performance across ChatGPT, Claude, Gemini, and DeepSeek
-- **Comprehensive Validation**: Two-layer evaluation framework combining execution testing and CodeBLEU metrics
+### Model
+- **T5-base (220M parameters)**
+- Fully fine-tuned on a custom SQLite → HiveQL dataset
 
-### Evaluation Strategy
-
-**Layer 1: Execution Accuracy (Gold Standard)**
-- Score 1 – Compilation Success: Verify translated queries run without errors in Hive
-- Score 2 – Data Equivalence: Compare result sets between original SQLite and translated Hive queries
-
-**Layer 2: Syntax and Structural Similarity**
-- CodeBLEU metric to evaluate code quality beyond exact text matching
-- Abstract Syntax Tree (AST) comparison for structural analysis
+### Retrieval (RAG)
+- **Embedding Model**: CodeBERT  
+- **Vector Store**: FAISS  
+- **Retrieval Strategy**: Top-k similar query examples (k = 3)  
+- Enhances translation quality via contextual prompting  
 
 ### Dataset
-- **Primary Dataset**: PARROT benchmark for cross-system SQL translation (from Hugging Face: `weizhoudb/PARROT`)
-- Filtered to extract SQLite-to-Hive query pairs for standardized ground truth
+- ~600 manually curated seed queries  
+- Expanded to ~5,000 using **AST-based augmentation (sqlglot)**  
+- Covers joins, aggregations, filters, and subqueries  
 
-## Repository Structure
+---
 
-To be updated. Project in progress.
+## Evaluation Strategy
+
+We use a **multi-metric evaluation framework**:
+
+- **Exact Match (EM%)**: Strict correctness after normalization  
+- **BLEU Score**: Measures similarity between predicted and reference queries  
+- **Parse Validity (PV%)**: Checks syntactic correctness using sqlglot  
+
+This ensures evaluation across:
+- Correctness  
+- Similarity  
+- Executability  
+
+---
+
+## Deployment
+
+### Web Interface
+- Built using **Gradio**
+- Allows:
+  - Query input  
+  - RAG toggle  
+  - Top-k selection  
+
+### Backend API
+- Built using **FastAPI**
+- Endpoints:
+  - `POST /translate`  
+  - `GET /health`  
+
+### Hosting
+- Deployed on **Hugging Face Spaces**
+- Supports real-time inference  
+
+---
+
+## Performance
+
+- **BLEU Score**: ~0.69  
+- **Exact Match**: ~33%  
+- **Latency**: ~1–3 seconds per query (T4 GPU)  
+- **Cold Start**: ~25 seconds  
+
+
+---
+
+## Limitations
+
+- Limited handling of highly complex nested queries  
+- No schema-aware translation  
+- Model size (~900MB) impacts deployment flexibility  
+
+---
+
+## Future Work
+
+- Extend to multiple SQL dialects  
+- Introduce schema-aware translation  
+- Explore lightweight fine-tuning (LoRA)  
+- Improve semantic evaluation using execution-based methods  
+
+---
+
+## Contributors
+
+- **Ajay** – Deployment & Core Pipeline Implementation  
+- **Sanjay Rajesh Manwani** – Backend & RAG Integration  
+- **Senthilkumar N** – System Integration & Deployment  
+- **Madhavan R Mohan** – Implementation, Documentation & Slides  
+- **Veral Sharma** – Implementation, Documentation & Slides  
+
+---
+
+## Status
+
+✅ **Project Completed**
